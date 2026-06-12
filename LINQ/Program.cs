@@ -8,7 +8,7 @@ class Program
 {
     static void Main(String[] args) 
     {
-        LINQDemo.Run();
+        LINQ.Run();
     }
 }
 
