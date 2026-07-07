@@ -273,6 +273,15 @@ Deploy to Production
 Monitoring & Feedback
 ```
 
+## Simple analogy
+
+Think of opening a restaurant:
+
+- Build Pipeline → Cook the food.
+- Run Automated Tests → Taste and check the food quality.
+- Create Build Artifact → Pack the food in a sealed container.
+- Release Pipeline → Deliver the packed food to different branches (Development, Staging, Production).
+
 ---
 
 # CI/CD in DevOps
@@ -308,3 +317,57 @@ Continuous Deployment automatically deploys every successful change to productio
 - Very fast releases
 - Fully automated pipeline
 - Immediate customer feedback
+
+--- 
+
+# What is On-Premises?
+
+**On-Premises (On-Prem)** refers to an IT infrastructure where all hardware, software, servers, networking devices, and data are hosted and managed within an organization's own physical location (such as office or data center).
+
+The Organization is responsible for purchasing, maintaining, securing, and upgrading all the infrastructure.
+
+---
+
+# How On-Premises Works
+
+```text
+Company Office / Data Center
+│
+├── Physical Servers
+├── Storage Devices
+├── Networking Equipment
+├── Database Servers
+├── Applications
+└── IT Team (Manages Everything)
+```
+
+Everything is located inside the company's premises.
+
+---
+
+# Characteristics of On-Premises
+
+- Organization owns the hardware.
+- Full control over servers and data.
+- Requires dedicated IT staff.
+- High upfront cost.
+- Maintenance and upgrades are the organization's responsibility.
+- Security is managed internally.
+
+---
+
+# Advantages
+
+- Complete control over infrastructure.
+- High level of customization.
+- Better for organizations with strict security or compliance requirements.
+- Data remains within the organization's premises.
+
+---
+
+# Disadvantages
+
+- High initial investment.
+- Ongoing maintenance costs.
+- Requires skilled IT administrators.
+- Scaling infrastructure takes time and additional hardware.
