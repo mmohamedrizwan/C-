@@ -8,7 +8,8 @@ Loose coupling means one class **does not depend on a specific implementation**.
 public class OrderService 
 {
     private EmailNotification notification = new EmailNotification();
-     public void PlaceOrder()
+
+    public void PlaceOrder()
     {
         notification.Send("Order Placed");
     }
