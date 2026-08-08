@@ -823,3 +823,127 @@ maxPrice = 50000
 ```
 
 ---
+
+# 25. Route Parameter vs Query Parameter
+
+## Route Parameter
+
+```text
+GET /api/products/10
+```
+
+Controller:
+
+```csharp
+[HttpGet("{id}")]
+public IActionResult GetById(int id)
+{
+    return Ok(id);
+}
+```
+
+Usually used to identify a specific resource.
+
+```text
+/api/products/10
+```
+
+means:
+
+```text
+Product with ID 10
+```
+
+## Query Parameter
+
+```text
+GET /api/products?name=laptop
+```
+
+Controller:
+
+```csharp
+[HttpGet]
+public IActionResult Search(string name)
+{
+    return Ok(name);
+}
+```
+
+Usually used for:
+
+- Searching
+- Filtering
+- Sorting
+- Pagination
+- Optional parameters
+
+---
+
+# 26. [FromBody]
+
+`[FromBody]` gets data from the HTTP request body.
+
+```csharp
+[HttpPost]
+public IActionResult Create([FromBody] Product product)
+{
+    return Ok(product);
+}
+```
+
+Request:
+
+```http
+POST /api/products
+Content-Type: application/json
+```
+
+Body:
+
+```json
+{
+    "name": "Laptop",
+    "price": 50000
+}
+```
+
+---
+
+# 27. Route + Query + Body Together
+
+An action can receive values from different sources.
+
+```csharp
+[HttpPut("{id:int}")]
+public IActionResult Update([FromRoute] int id, [FromQuery] bool notify, [FromBody] Product product)
+{
+    return Ok();
+}
+```
+
+Request:
+
+```http
+PUT /api/products/10?notify=true
+Content-Type: application/json
+```
+
+Body:
+
+```json
+{
+    "name": "Laptop",
+    "price": 55000
+}
+```
+
+Values:
+
+```text
+id     = 10
+notify = true
+product = request body
+```
+
+---
