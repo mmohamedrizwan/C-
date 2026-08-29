@@ -223,3 +223,57 @@ Therefore, the method returns:
 ```
 
 and the exception is suppressed.
+
+# A struct is passed to a method that mutates it. After calling the method with the struct argument, what is printed and why does the original struct remain unchanged?
+
+## The Code
+
+```csharp
+struct S
+{
+    public int x;
+}
+
+void Mutate(S s)
+{
+    s.x = 5;
+}
+
+S s = new S();
+s.x = 0;
+Mutate(s);
+Console.WriteLine(s.x); // 0
+```
+
+## Output 
+
+```
+0
+```
+
+## Why 
+
+`S` is a `struct`, and structs in C# are **value types**. When you pass `s` into `Mutate(s)` without `ref`, `out`, or `in`, C# copies the entire struct into the method's parameter. Inside `Mutate`, the parameter `s` is a brand-new, independent copy sitting in its own memory — completely disconnected from the `s` in the caller's scope.
+
+So `s.x = 5;` inside `Mutate` only changes the copy's `x` field. Once `Mutate` returns, that copy is discarded, and the original `s` back in the caller is untouched — still `0`.
+
+## Fixing It: Use `ref`
+ 
+To actually mutate the original, pass it by reference:
+ 
+```csharp
+void Mutate(ref S s)
+{
+    s.x = 5;
+}
+ 
+Mutate(ref s);
+Console.WriteLine(s.x); // 5
+```
+ 
+`ref` tells the compiler "don't copy — give the method direct access to the original variable's memory."
+
+## The Core Distinction
+ 
+- **Structs (value types):** copied by default when passed to a method. Mutations inside the method don't affect the original unless you use `ref`.
+- **Classes (reference types):** passing an object passes a reference to the same underlying instance, so mutations to its fields *do* propagate back to the caller — no `ref` needed.
