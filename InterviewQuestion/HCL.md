@@ -79,6 +79,7 @@ TryParse("42", out number);
 | Typical use | Modify an existing value | Return extra value(s) |
 | Common example | Swap functions, in-place mutation | `TryParse`, `TryGetValue` |
 
+
 # `return` Inside `finally` in C#
 
 ## Key Point
@@ -224,6 +225,7 @@ Therefore, the method returns:
 
 and the exception is suppressed.
 
+
 # A struct is passed to a method that mutates it. After calling the method with the struct argument, what is printed and why does the original struct remain unchanged?
 
 ## The Code
@@ -277,3 +279,36 @@ Console.WriteLine(s.x); // 5
  
 - **Structs (value types):** copied by default when passed to a method. Mutations inside the method don't affect the original unless you use `ref`.
 - **Classes (reference types):** passing an object passes a reference to the same underlying instance, so mutations to its fields *do* propagate back to the caller — no `ref` needed.
+
+
+# Queue vs Stack
+
+## Queue - First In, First Out (FIFO)
+
+Items are processed in the order they were added - the first item added is the first one removed. Think of a line of people waiting: whoever got in line first get served first.
+
+**Key operations:**
+- `Enqueue(item)` - add to the back
+- `Dequeue()` - remove from the front
+
+**Example scenerio:** A print spooler. Documents sent to the printer should print in the order they were submitted - the first document queued should be the first one printed, regardless of how many more get added while it's still working through the list.
+
+## Stack — Last In, First Out (LIFO)
+
+Items are processed in reverse order of insertion - the most recently added item is the first one removed. Think of a stack of plates: you take from top, which is also where you last placed one.
+
+**Key operations:**
+- `Push(item)` - add to the top
+- `Pop()` - remove from the top
+
+**Example scenerio:** The "undo" feature in a text editor. Each edit action gets pushed onto a stack; when the user hits Ctrl + Z, you pop the most recent action off and reverse it - you always undo the *last* thing done first, not the oldest.
+
+## Quick Comparison
+ 
+| Aspect | Queue | Stack |
+|---|---|---|
+| Order | FIFO (First In, First Out) | LIFO (Last In, First Out) |
+| Add | `Enqueue` (back) | `Push` (top) |
+| Remove | `Dequeue` (front) | `Pop` (top) |
+| Real-world analogy | Waiting line | Stack of plates |
+| Common use cases | Task scheduling, message queues, breadth-first search (BFS) | Undo/redo, expression evaluation, backtracking, depth-first search (DFS), call stack |
