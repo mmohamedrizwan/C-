@@ -18,6 +18,8 @@ namespace InterviewQuestion.CodingSolution
         /// </summary>
         public static void Concatenation()
         {
+            Console.WriteLine("Reversing a string using concatenation (not efficient):");
+
             String input = "Hello, World!";
             String result = String.Empty;
 
@@ -32,6 +34,8 @@ namespace InterviewQuestion.CodingSolution
 
         public static void Char()
         {
+            Console.WriteLine("Reversing a string using a character array:");
+
             String input = "hello world";
             Char[] result = new Char[input.Length];
 
@@ -50,6 +54,8 @@ namespace InterviewQuestion.CodingSolution
         /// </summary>
         public static void StringBuilder()
         {
+            Console.WriteLine("Reversing a string using StringBuilder:");
+
             String input = "hello world";
             StringBuilder result = new StringBuilder();
 
